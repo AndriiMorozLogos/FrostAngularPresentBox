@@ -1,0 +1,11 @@
+<div>
+  <button (click)="appService.navigate('/admin/users')" class="mx-2 ml-3">Get all users</button>
+  <button (click)="appService.navigate('/admin/buyers')" class="mx-2">Get all buyers</button>
+  <button (click)="appService.navigate('/admin/orders')" class="mx-2">Get all present orders</button>
+  <button (click)="appService.navigate('/admin/create')" class="mx-2">Create present box</button>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

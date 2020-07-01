@@ -1,0 +1,35 @@
+<div class="d-flex flex-wrap hover">
+  <div *ngFor="let order of orders" class="text-center border m-3"
+       style="border: 1px solid black ; border-radius: 10px">
+    <h4 class="text-center">{{order.name}}</h4>
+    <img style="width: 200px" src="{{order.photoUrl}}" alt="">
+    <h5 class="px-2">{{order.description}}</h5>
+    <h5 class="">Is available: {{order.isAvailable}}</h5>
+    <h5 class="">Price: {{order.priceInUah}} ua</h5>
+    <h5 class="">Status: {{order.status}}</h5>
+
+    <div class="m-2 border">
+      Buyer:
+      <h4>{{order.buyer.firstName}} {{order.buyer.lastName}}</h4>
+      <h5>{{order.buyer.email}}</h5>
+      <h5>{{order.buyer.phoneNumber}}</h5>
+    </div>
+
+    <div class="m-1">
+
+      <div>
+        <select [(ngModel)]="status[order.id]" style="background: silver">
+          <option selected>NOT_CREATED</option>
+          <option>CREATED</option>
+          <option>APPROVED</option>
+          <option>DECLINED</option>
+          <option>SENT</option>
+          <option>EXPIRED</option>
+          <option>CANCELED</option>
+        </select>
+      </div>
+
+      <button class="m-1" (click)="send(order.id)">Set status</button>
+    </div>
+  </div>
+</div>

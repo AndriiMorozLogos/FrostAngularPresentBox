@@ -1,0 +1,41 @@
+<div class="">
+
+  <div class="d-flex flex-wrap hover">
+    <div *ngFor="let user of users" class="border p-2 m-2 ">
+
+      <h4>{{user.firstName}} {{user.lastName}}</h4>
+      <h5>{{user.email}}</h5>
+      <h5>{{user.phoneNumber}}</h5>
+
+      <div *ngIf="users.length > 0 && (appService.userIn == true && (appService.user.role === 'ROLE_ADMIN'))" class="my-2">
+        <button *ngIf="appService.userIn == true && (user.role === 'ROLE_BUYER')"
+                (click)="updateUserStatus('ROLE_ADMIN',user.id)">Set admin status
+        </button>
+
+        <button *ngIf="appService.userIn == true && (user.role === 'ROLE_ADMIN')"
+                (click)="updateUserStatus('ROLE_BUYER',user.id)">Set buyer status
+        </button>
+
+      </div>
+
+
+      <span class="ml-2" *ngIf="appService.user.orders.length > 0">Orders:</span>
+
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let order of user.orders" class="text-center border mx-2"
+             style="border: 1px solid black ; border-radius: 10px">
+          <h4 class="text-center">{{order.name}}</h4>
+          <img style="width: 200px" src="{{order.photoUrl}}" alt="">
+          <h5 class="px-2">{{order.description}}</h5>
+          <h5 class="">Is available: {{order.isAvailable}}</h5>
+          <h5 class="">Price: {{order.priceInUah}} ua</h5>
+          <h5 class="">Status: {{order.status}}</h5>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

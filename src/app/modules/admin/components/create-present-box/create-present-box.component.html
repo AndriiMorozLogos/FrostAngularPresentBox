@@ -1,0 +1,45 @@
+<div class="mx-3 mt-3">
+
+  <form [formGroup]="createPresentBoxForma" (submit)="createBox()">
+    <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+    <div
+      [ngClass]="(createPresentBoxForma.controls.name.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control " type="text" formControlName="name"
+             placeholder="Title">
+    </div>
+
+    <div
+      [ngClass]="(createPresentBoxForma.controls.description.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control " type="text" formControlName="description"
+             placeholder="Description">
+    </div>
+
+    <div
+      [ngClass]="(createPresentBoxForma.controls.isAvailable.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control " type="text" formControlName="isAvailable"
+             placeholder="Is available">
+    </div>
+
+    <div
+      [ngClass]="(createPresentBoxForma.controls.priceInUah.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control " type="text" formControlName="priceInUah"
+             placeholder="Price">
+    </div>
+
+    <div *ngIf="createPresentBoxForma.controls.name.valid">
+      <div>
+        <label>Photo </label>
+        <div>
+          <label for="files" class="w-100 bg-white silver">Load photo</label>
+        </div>
+        <input style="visibility:hidden;" id="files" formControlName="file" type="file"
+               (change)="onFileSelected($event)">
+      </div>
+    </div>
+
+    <div class="frm-group">
+      <button [disabled]="createPresentBoxForma.invalid" class="btn btn-primary btn-block" type="submit">Create</button>
+    </div>
+  </form>
+
+</div>

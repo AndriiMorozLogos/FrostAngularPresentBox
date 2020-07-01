@@ -1,0 +1,10 @@
+<div class="my-2">
+  <span class="mx-2">Admins: </span>
+  <div class=" d-flex flex-wrap">
+
+    <div class="border mx-2 p-2" *ngFor="let admin of admins">
+      <h4>{{admin.firstName}} {{admin.lastName}}</h4>
+      <h4>Phone: {{admin.phoneNumber}}</h4>
+    </div>
+  </div>
+</div>

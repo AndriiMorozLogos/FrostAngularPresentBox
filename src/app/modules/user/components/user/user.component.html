@@ -1,0 +1,72 @@
+<div>
+  <div class="border mx-2 p-2">
+    <div *ngIf="!userService.updateStatus">
+      <h4>{{appService.user.firstName}} {{appService.user.lastName}}</h4>
+      <h5>{{appService.user.email}}</h5>
+      <h5>{{appService.user.phoneNumber}}</h5>
+    </div>
+
+    <div *ngIf="userService.updateStatus" class="mb-2">
+      <form [formGroup]="updateUserForma" (submit)="updateUser()">
+        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+        <div
+          [ngClass]="(updateUserForma.controls.firstName.invalid) ? 'error' : 'form-group' ">
+          <input class="form-control " type="text" formControlName="firstName"
+                 placeholder="First Name">
+        </div>
+
+        <div
+          [ngClass]="(updateUserForma.controls.lastName.invalid) ? 'error' : 'form-group' ">
+          <input class="form-control " type="text" formControlName="lastName"
+                 placeholder="Last Name">
+        </div>
+
+        <div
+          [ngClass]="(updateUserForma.controls.email.invalid) ? 'error' : 'form-group' ">
+          <input class="form-control " type="text" formControlName="email"
+                 placeholder="Email">
+        </div>
+
+        <div
+          [ngClass]="(updateUserForma.controls.phoneNumber.invalid) ? 'error' : 'form-group' ">
+          <input class="form-control " type="text" formControlName="phoneNumber"
+                 placeholder="Phone number">
+        </div>
+
+        <div class="frm-group">
+          <button [disabled]="updateUserForma.invalid" class="btn btn-primary btn-block" type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+
+
+    <button (click)="appService.navigate('/user/admins')">Show admins</button>
+    <button (click)="setUpdateStatus(!userService.updateStatus)" class="mx-2">
+      <span *ngIf="!userService.updateStatus">Update user</span>
+      <span *ngIf="userService.updateStatus">Back</span>
+    </button>
+    <button (click)="userService.deleteUser()">Delete account</button>
+
+  </div>
+
+  <span class="ml-2" *ngIf="appService.user.orders.length > 0">Orders:</span>
+  <div class="hover d-flex flex-wrap">
+    <div *ngFor="let order of appService.user.orders" class="text-center border mx-2">
+      <div *ngIf="order.name">
+        <h4 class="text-center">{{order.name}}</h4>
+        <img style="width: 200px" src="{{order.photoUrl}}" alt="">
+        <h5 class="px-2">{{order.description}}</h5>
+        <h5 class="">Is available: {{order.isAvailable}}</h5>
+        <h5 class="">Price: {{order.priceInUah}} ua</h5>
+        <h5 class="">Status: {{order.status}}</h5>
+
+        <button class="m-2" (click)="deleteOrder(order.id)">Delete order</button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

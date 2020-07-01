@@ -1,0 +1,47 @@
+<div class="login-dark">
+  <form [formGroup]="registrationForma" (submit)="postDataForRegistration()">
+    <h2 class="sr-only">Login Form</h2>
+    <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+
+    <div
+      [ngClass]="(registrationForma.controls.email.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="email" formControlName="email" placeholder="Email">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.password.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="password" formControlName="password"
+             placeholder="Password">
+    </div>
+
+    <div
+      [ngClass]="registrationForma.controls.password.touched && (registrationForma.controls.password.value != registrationForma.controls.duplicate_password.value
+      || registrationForma.controls.password.invalid || registrationForma.controls.duplicate_password.invalid) ? 'error' : 'form-group' ">
+
+      <input class="form-control" type="password" formControlName="duplicate_password"
+             placeholder="Dublicate password">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.name.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="name"
+             placeholder="Name">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.surname.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="surname"
+             placeholder="Surname">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.phoneNumber.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="phoneNumber"
+             placeholder="phoneNumber">
+    </div>
+
+    <div class="frm-group">
+      <button [disabled]="registrationForma.invalid" class="btn btn-primary btn-block" type="submit">Sign Up</button>
+    </div>
+  </form>
+</div>

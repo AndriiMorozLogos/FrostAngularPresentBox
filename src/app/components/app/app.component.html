@@ -1,0 +1,54 @@
+<div>
+  <header>
+    <nav class="navbar navbar-inverse opacity09">
+      <div class="container-fluid ">
+        <div class="navbar-header">
+          <a class="navbar-brand cursor" (click)="appService.navigate('/')">SHOP</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="appService.userIn == true"><a (click)="navigate('/user')"><span
+            ></span>
+              User page</a></li>
+            <li *ngIf="appService.userIn == true && (appService.user.role === 'ROLE_ADMIN')"><a
+              (click)="navigate('/admin')"><span
+            ></span>
+              Admin page</a></li>
+            <li *ngIf="appService.userIn == false"><a routerLink="registration"><span
+              class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li *ngIf="appService.userIn == false"><a routerLink="login"><span
+              class="glyphicon glyphicon-log-in"></span>
+              Login</a></li>
+            <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span
+              class="glyphicon glyphicon-log-in"></span>
+              Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main>
+    <router-outlet></router-outlet>
+    <div *ngIf="appService.requestStatus" class="container">
+      <div class="row">
+        <div id="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="loading"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+
+  </footer>
+</div>

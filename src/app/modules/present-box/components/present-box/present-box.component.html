@@ -1,0 +1,63 @@
+<div class="hover">
+
+  <div class="text-center border ml-7Extra col-12 bg-black">
+
+
+    <div *ngIf="!statusUpdateForma" (click)="navigate()" class="bg-silver">
+
+      <h4 class="text-center   col-8 ml-7"><span class="fn-size-5">{{box.name}}</span></h4>
+      <img style="width: 300px" src="{{box.photoUrl}}" alt="">
+      <div class="  mx-2 p-1">
+        <h5 class="text-center ">{{box.description}}</h5>
+        <h5 class="ml-3">Is available: {{box.isAvailable}}</h5>
+        <h5 class="ml-3">Price: {{box.priceInUah}} ua</h5>
+      </div>
+    </div>
+
+
+
+    <button (click)="buyPresentBox()" [disabled]="(!appService.userIn && !appService.userId) && true"
+            class="black m-2" title="Please log in for buy">Buy</button>
+
+    <span *ngIf="appService.user.role === 'ROLE_ADMIN'">
+      <button (click)="setUpdateStatus(!statusUpdateForma)" class="black m-2">
+        <span *ngIf="!statusUpdateForma">Update</span>
+        <span *ngIf="statusUpdateForma">Back</span>
+      </button>
+      <button class="black  m-2" (click)="deleteBox()">Delete</button>
+
+      <div *ngIf="statusUpdateForma">
+        <form [formGroup]="updateForma" (submit)="updateBox()">
+          <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+          <div
+            [ngClass]="(updateForma.controls.name.invalid) ? 'error' : 'form-group' ">
+            <input class="form-control " type="text" formControlName="name"
+                   placeholder="Title">
+          </div>
+
+          <div
+            [ngClass]="(updateForma.controls.description.invalid) ? 'error' : 'form-group' ">
+            <input class="form-control " type="text" formControlName="description"
+                   placeholder="Description">
+          </div>
+
+          <div
+            [ngClass]="(updateForma.controls.isAvailable.invalid) ? 'error' : 'form-group' ">
+            <input class="form-control " type="text" formControlName="isAvailable"
+                   placeholder="Is available">
+          </div>
+
+          <div
+            [ngClass]="(updateForma.controls.priceInUah.invalid) ? 'error' : 'form-group' ">
+            <input class="form-control " type="text" formControlName="priceInUah"
+                   placeholder="Price">
+          </div>
+
+          <div class="frm-group">
+            <button [disabled]="updateForma.invalid" class="btn btn-primary btn-block" type="submit">Update</button>
+          </div>
+        </form>
+      </div>
+    </span>
+  </div>
+</div>
